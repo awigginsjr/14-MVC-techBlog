@@ -23,5 +23,3 @@ GitHub ~ [https://github.com/awigginsjr](https://github.com/awigginsjr)
 Repository ~ [https://github.com/awigginsjr/13-e-commerce-back_end.git](https://github.com/awigginsjr/13-e-commerce-back_end.git)
 
 Heroku ~ [\*\*\*](***)
-
-dependencies
