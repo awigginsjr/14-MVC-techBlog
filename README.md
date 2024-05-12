@@ -4,7 +4,7 @@ Model-View-Controller (MVC) - a pattern in software design commonly used to impl
 
 ## Description
 
-A CMS-style blog site where developers can publish articles, blog posts, thoughts, opinions, and comment on other developers’ posts as well.
+A CMS-style blog site where developers who writes about tech can publish articles, blog posts, thoughts, opinions, and comment on other developers’ posts as well.
 
 ## Screenshot and Demo of Application
 
@@ -23,3 +23,5 @@ GitHub ~ [https://github.com/awigginsjr](https://github.com/awigginsjr)
 Repository ~ [https://github.com/awigginsjr/13-e-commerce-back_end.git](https://github.com/awigginsjr/13-e-commerce-back_end.git)
 
 Heroku ~ [\*\*\*](***)
+
+dependencies
