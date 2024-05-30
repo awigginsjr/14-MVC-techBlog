@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Import route modules from their respective files
 const homeRoutes = require('./homeRoutes');
-const apiRoutes = require('./api/');
+const apiRoutes = require('./api');
 const dashRoutes = require('./dashRoutes');
 
 // Define routes

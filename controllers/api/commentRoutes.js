@@ -1,10 +1,10 @@
 // Purpose: to create routes for comments
 const router = require('express').Router();
 const { Comments } = require('../../models');
-const { auth } = require('../../utils/auth');
+const withAuth  = require('../../utils/auth');
 
 // Create a new comment with auth
-router.post('/', auth, async (req, res) => { // req is the request object, res is the response object
+router.post('/', withAuth, async (req, res) => { // req is the request object, res is the response object
 
     // The try...catch statement marks a block of statements to try and specifies a response if an error is thrown.
     try {

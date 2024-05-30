@@ -1,10 +1,10 @@
 // Purpose: to create, update, and delete posts
 const router = require('express').Router();
 const { Post } = require('../../models');
-const { auth } = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 // Create a new post with auth 
-router.post('/', auth, async (req, res) => { // req is the request object, res is the response object
+router.post('/', withAuth, async (req, res) => { // req is the request object, res is the response object
     
     // The req.body object contains the data that the client sends to the server.
     const body = req.body; 
@@ -24,7 +24,7 @@ router.post('/', auth, async (req, res) => { // req is the request object, res i
 });
 
 // Update a post with auth
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
 
     // The try...catch statement marks a block of statements to try and specifies a response if an error is thrown.
     try {
@@ -50,7 +50,7 @@ router.put('/:id', auth, async (req, res) => {
 
 
 // Delete a post with auth
-router.delete('/:id', auth, async (req, res) => { 
+router.delete('/:id', withAuth, async (req, res) => { 
 
     // The try...catch statement marks a block of statements to try and specifies a response if an error is thrown.
     try {
