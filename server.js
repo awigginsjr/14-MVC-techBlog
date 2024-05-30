@@ -45,6 +45,9 @@ app.use(session(sess));
 app.set('view engine', 'handlebars');
 app.engine('handlebars', hbs.engine);
 
+// Specify the directory where Handlebars templates are located
+app.set('views', path.join(__dirname, 'views'));
+
 // Middleware for parsing incoming requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -54,6 +57,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes middleware
 app.use(routes);
+
+app.get('/', async (req, res) => {
+  try {
+      const data = await fetchData(); // Fetch data from API
+      res.render('main', { quote: data }); // Pass data to Handlebars template
+  } catch (error) {
+      res.status().send('Error fetching data');
+  }
+});
 
 // Sync sequelize models and start the Express.js server
 sequelize.sync({ force: false }).then(() => {

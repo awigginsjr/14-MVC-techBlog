@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Key facts about the Model-View-Controller (MVC)",
+    "body": "MVC architectural pattern offers a structured and efficient approach to developing web applications, promoting separation of concerns, scalability, maintainability, reusability, and testability.",
+    "user_id": 1
+  },
+  {
+    "title": "Separation of Concerns",
+    "body": "MVC separates the application into three interconnected components, each responsible for different aspects of the application's functionality: Model, View, and Controller.",
+    "user_id": 2
+  },
+  {
+    "title": "Supports Multiple Views",
+    "body": "MVC promotes modularity and code organization, making it easier to maintain and scale applications.",
+    "user_id": 3
+  }
+]
