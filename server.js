@@ -25,6 +25,9 @@ const sess = {
   cookie: {
     // Session will automatically expire in 10 minutes
     maxAge: 600000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict',
   },
     // avoid resaving the session if nothing has changed
   resave: false,
@@ -54,5 +57,5 @@ app.use(routes);
 
 // Sync sequelize models and start the Express.js server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Now listening`));
+  app.listen(PORT, () => console.log(`Now listening on port 3001!`));
 });
