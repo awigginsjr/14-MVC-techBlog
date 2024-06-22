@@ -8,7 +8,7 @@ A CMS-style blog site where developers who writes about tech can publish article
 
 ## Screenshot and Demo of Application ~
 
-![screenshot](***)
+![screenshot](assets/images/techblogsc.png)
 
 ## Usage
 
@@ -20,6 +20,6 @@ If you have any additional questions, concerns, or would like to view more of my
 
 GitHub ~ [https://github.com/awigginsjr](https://github.com/awigginsjr)
 
-Repository ~ [https://github.com/awigginsjr/13-e-commerce-back_end.git](https://github.com/awigginsjr/13-e-commerce-back_end.git)
+Repository ~ [https://github.com/awigginsjr/14-MVC-techBlog](https://github.com/awigginsjr/14-MVC-techBlog)
 
 Heroku ~ [\*\*\*](***)
