@@ -3,53 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MVC Tech Blog</title>
+    <title>MVC Tech Blog 💻</title>
     <!-- Bootstrap CSS via CDN -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">MVC Tech Blog</a>
+            <a class="navbar-brand" href="/">MVC Tech Blog 💻</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link" href="/">Home 🏠</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                        <a class="nav-link" href="/dashboard">Dashboard 📇</a>
                     </li>
                     {{#if loggedIn}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="logout">Logout 📖</a>
+                        </li>
                     {{else}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/signup">Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login 📘</a>
+                        </li>
                     {{/if}}
                 </ul>
             </div>
         </nav>
     </header>
     <main class="container mt-4">
-        {{{body}}}
     </main>
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container">
-            <span class="text-muted">&copy; 2024 CMS Blog</span>
-        </div>
-    </footer>
-    
-    <!-- Bootstrap JS and jQuery via CDN (optional, for Bootstrap components that require JS) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        {{{body}}}
+
+    {{#if dashboard}}
+        <footer class='footer mt-auto py-3 bg-light'>
+            <div class="container text-center">
+                <a href='/dashboard/new' class='btn btn-primary'> New Post ✏️</a>
+            </div>    
+        </footer>
+    {{else}}
+        <footer class="footer mt-auto py-3 bg-light">
+            <div class="container text-center">
+                <span>&copy; 2024 CMS Blog Anthony Wiggins Jr</span>
+            </div>
+        </footer>
+    {{/if}}
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous">
+    </script>
+
+    {{#if loggedIn}}
+        <script src="/js/logout.js"></script>
+    {{/if}}
+
 </body>
 </html>

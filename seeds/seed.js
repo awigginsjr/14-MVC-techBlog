@@ -7,39 +7,22 @@ const userData = require('./userData.json');
 const postData = require('./postData.json');
 
 const seedDatabase = async () => {
-  try {
-      await sequelize.sync({ force: true });
-      // The force: true option will drop all the tables in the database and re-create them based on the models.
-
-      const users = await User.bulkCreate(userData, {
-          individualHooks: true,
-          returning: true,
+    await sequelize.sync({ force: true });
+  
+    const users = await User.bulkCreate(userData, {
+      individualHooks: true,
+      returning: true,
+    });
+  
+    for (const post of postData) {
+      await Post.create({
+        ...post,
+        userId: users[Math.floor(Math.random() * users.length)].id,
       });
-      // The bulkCreate method is used to insert multiple records into the database at once.
-
-      const postPromises = postData.map(async (post) => {
-          try {
-              const randomUserId = users[Math.floor(Math.random() * users.length)].id;
-              await Post.create({
-                  ...post,
-                  user_id: randomUserId,
-              });
-          } catch (error) {
-              console.error('Error creating post:', error);
-          }
-      });
-      // The create method is used to insert a single record into the database.
-
-      await Promise.all(postPromises);
-
-      console.log('Seeding complete!');
-      process.exit(0); // Exit the Node.js process with a success status code
-  } catch (error) {
-      console.error('Error seeding the database:', error);
-      process.exit(1); // Exit the Node.js process with a failure status code
-  }
+    }
+    process.exit(0);
 };
-
+  
 seedDatabase();
 
 // const seedDatabase = async () => {

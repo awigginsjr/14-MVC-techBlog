@@ -1,5 +1,5 @@
 // Purpose: To create the Post model for the database
-const {Model, DataTypes} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // Create a Post model
@@ -8,7 +8,6 @@ class Post extends Model {}
 // Set up fields and rules for Post model
 Post.init(
   {
-
     // This is the column that will hold the post id
     id: {
       type: DataTypes.INTEGER,
@@ -24,19 +23,10 @@ Post.init(
     },
 
     // This is the column that will hold the post text
-    post_text: {
+    body: {
       type: DataTypes.STRING,
       allowNull: false
     },
-
-    // This is the column that will hold the foreign key value
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    }
   },
   {
     // Pass in our imported sequelize connection (the direct connection to our database)

@@ -1,5 +1,5 @@
 // Purpose: To create a Comment model for the database
-const {Model, DataTypes} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // Create a Comment model
@@ -14,24 +14,17 @@ Comments.init(
       primaryKey: true,
       autoIncrement: true
     },
-    comments_text: {
+    body: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
         key: 'id'
       }
     },
-    post_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'post',
-        key: 'id'
-      }
-    }
   },
   {
     // Pass in our imported sequelize connection (the direct connection to our database)

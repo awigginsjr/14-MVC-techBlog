@@ -1,30 +1,28 @@
 // Purpose: to handle the routes for the home page
-const express = require('express');
-const router = express.Router();
-const { Post, User, Comments } = require('../models');
-const withAuth = require('../utils/auth');
+// const express = require('express');
+const router = require('express').Router();
+const { Post, User, Comments } = require('../models/');
+const { withAuth, withoutAuth } = require('../utils/auth');
 
 // Get all posts
 router.get('/', async (req, res) => {
-    try {
-        // Get all posts and include the user who posted them
-        const postData = await Post.findAll({
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-            ],
-        });
+
+  let posts = [];
+
+  try {
+    const postData = await Post.findAll({
+      include: [User],
+    });
         // Serialize the data so the template can read it
-        const posts = postData.map((post) => post.get({ plain: true }));
-        res.render('home', { posts, loggedIn: req.session.logged_in });
-    } catch (err) {
-        res.status(500).json(err); // 500 status code means Internal Server Error
-    }
+    posts = postData.map((post) => post.get({ plain: true }));
+  } catch (err) {
+    // res.status(500).json(err); // 500 status code means Internal Server Error
+    console.log(err);
+  }
+    res.render('home', { posts, loggedIn: req.session.logged_in });
 });
 
-//
+// Get a single post by id
 router.get('/post/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
@@ -38,36 +36,34 @@ router.get('/post/:id', async (req, res) => {
         });
     
         // if no post by that id, return 404 status code
-        if (!postData) {
-          return res.status(404).end(); // 404 status code means Not Found
+        if (postData) {
+          const post = postData.get({ plain: true });
+
+          res.render('post', { post, loggedIn: req.session.logged_in, });
+        } else {
+          res.status(404).end();
         }
-        
-        const post = postData.get({ plain: true });
-        res.render('post', {
-          post,
-          loggedIn: req.session.loggedIn,
-        });
       } catch (err) {
         res.status(500).json(err); // 500 status code means Internal Server Error
     }
 });
 
 // Login route and login page
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
+router.get('/login', withoutAuth, (req, res) => {
+  try {
     res.render('login');
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // Signup route to signup page
-router.get('/signup', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
+router.get('/sign-up', withoutAuth, (req, res) => {
+  try {
     res.render('signup');
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // export the router

@@ -1,5 +1,5 @@
 // Purpose: Create a User model that will be used to store user data in the database.
-const {Model, DataTypes} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');   // Import the bcrypt package
 const sequelize = require('../config/connection');
 
@@ -29,17 +29,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    // Define an email column
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      // There cannot be any duplicate email values in this table
-      unique: true,
-      // If allowNull is set to false, we can run our data through validators before creating the table data
-      validate: {
-        isEmail: true
-      }
-    },
     // Define a password column
     password: {
       type: DataTypes.STRING,
@@ -53,25 +42,23 @@ User.init(
   {
     // Hash the password before a new user is created or a user's password is updated
     hooks: {
-      async beforeCreate(newUserData) {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10); // Hash the password with a salt round of 10
         return newUserData;
       },
-      async beforeUpdate(updatedUserData) {
-        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10 // Hash the password with a salt round of 10
+        );
         return updatedUserData;
-      }
+      },
     },
     // Pass in our imported sequelize connection (the direct connection to our database)
     sequelize,
-    // Don't automatically create createdAt/updatedAt timestamp fields
-    timestamps: false,
-    // Don't pluralize name of database table
     freezeTableName: true,
-    // Use underscores instead of camel-casing (i.e., `comment_text` and not `commentText`)
     underscored: true,
-    // Make it so our model name stays lowercase in the database
-    modelName: 'user'
+    modelName: 'user',
   }
 );
 

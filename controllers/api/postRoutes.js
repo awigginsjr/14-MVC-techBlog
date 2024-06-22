@@ -1,20 +1,16 @@
 // Purpose: to create, update, and delete posts
 const router = require('express').Router();
-const { Post } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { Post } = require('../../models/');
+const { apiAuth } = require('../../utils/auth');
 
 // Create a new post with auth 
-router.post('/', withAuth, async (req, res) => { // req is the request object, res is the response object
-    
+router.post('/', apiAuth, async (req, res) => { // req is the request object, res is the response object
     // The req.body object contains the data that the client sends to the server.
     const body = req.body; 
-
     // The try...catch statement marks a block of statements to try and specifies a response if an error is thrown.
     try {
-
         // new post is created
-        const newPost = await Post.create({ ...body, user_id: req.session.user_id });
-
+        const newPost = await Post.create({ ...body, userId: req.session.user_id });
         // newPost is returned as a JSON object
         res.json(newPost);
     } catch (err) {
@@ -24,18 +20,15 @@ router.post('/', withAuth, async (req, res) => { // req is the request object, r
 });
 
 // Update a post with auth
-router.put('/:id', withAuth, async (req, res) => {
-
+router.put('/:id', apiAuth, async (req, res) => {
     // The try...catch statement marks a block of statements to try and specifies a response if an error is thrown.
     try {
-
         // The update method is used to update the post data based on the req.body object.
         const [affectedRows] = await Post.update(req.body, {
             where: {
                 id: req.params.id, // The id of the post is taken from the req.params object.
             },
         });
-
         // If the affectedRows is greater than 0, the status code is 200.
         if (affectedRows > 0) {
             res.status(200).end(); // 200 status code means OK
@@ -50,18 +43,15 @@ router.put('/:id', withAuth, async (req, res) => {
 
 
 // Delete a post with auth
-router.delete('/:id', withAuth, async (req, res) => { 
-
+router.delete('/:id', apiAuth, async (req, res) => { 
     // The try...catch statement marks a block of statements to try and specifies a response if an error is thrown.
     try {
-
         // The destroy method is used to delete the post based on the req.params.id.
         const [affectedRows] = Post.destroy({
             where: {
                 id: req.params.id, // The id is taken from the req.params.id
             },
         });
-
         // If the affectedRows is greater than 0, the status code is 200.
         if (affectedRows > 0) {
             res.status(200).end(); // 200 status code means OK
@@ -73,6 +63,5 @@ router.delete('/:id', withAuth, async (req, res) => {
         res.status(500).json(err); // 500 status code means Internal Server Error
     }
 });
-
 // Export the router with all the routes mounted on it
 module.exports = router;

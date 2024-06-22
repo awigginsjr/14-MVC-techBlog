@@ -1,4 +1,5 @@
-<div class="container">
+{{!-- Dashboard --}}
+{{!-- <div class="container">
     <div class="row">
         <div class="col-md-8">
             {{#each posts}}
@@ -6,6 +7,27 @@
                 <span>{{title}}</span>
                 <span>{{formatDate createdAt}}</span>
             </a>
+            {{/each}}
+        </div>
+    </div>
+</div> --}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {{#each posts}}
+            <div class="card mb-3">
+                <div class="card-header">
+                    <a class="list-item flex-row justify-space-between" href="/dashboard/edit/{{id}}"> 
+                        Edit ✍️:
+                    </a>
+                        <span>{{title}}</span>
+                        <span>{{formatDate createdAt}}</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{body}}</p>
+                </div>
+            </div>
             {{/each}}
         </div>
     </div>

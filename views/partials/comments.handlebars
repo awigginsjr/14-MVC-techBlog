@@ -1,0 +1,15 @@
+{{!-- <li class="list-group-item">
+  <p>{{user.username}}
+    <span class="text-muted">{{formatDate createdAt}}</span>
+  </p>
+  <p class="mb-0">{{body}}</p>
+</li> --}}
+
+{{!-- {{#each post.comments}} --}}
+<li class="list-group-item">
+    <p>{{this.user.username}}
+        <span class="text-muted">{{formatDate createdAt}}</span>
+    </p>
+    <p class="mb-0">{{body}}</p>
+</li>
+{{!-- {{/each}} --}}

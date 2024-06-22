@@ -1,5 +1,6 @@
+{{!-- Home --}}
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 mx-auto">
         {{#each posts}}
         <div class="card mb-3">
             <div class="card-header flex-row justify-space-between">
@@ -8,6 +9,11 @@
                 </h2>
                 <div>
                     Posted by {{user.username}} on {{formatDate createdAt}}
+                </div>
+                <div class="card-body">
+                    {{!-- <a href="/dashboard/edit/{{id}}" class="btn btn-primary">Edit</a>
+                    <button class="btn btn-danger" data-id="{{id}}">Delete</button> --}}
+                    {{body}}
                 </div>
             </div>
         </div>

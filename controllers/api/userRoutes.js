@@ -1,10 +1,10 @@
 // Purpose: to handle the routes for the user model
 const router = require('express').Router();
 const { User } = require('../../models');
-const withAuth = require('../../utils/auth');
+// const withAuth = require('../../utils/auth');
 
 // Create a new user
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         // new user is created with the data from the req.body object
         const userData = await User.create(req.body);
@@ -13,7 +13,7 @@ router.post('/', withAuth, async (req, res) => {
         req.session.save(() => {
             req.session.user_id = userData.id; 
             req.session.username = userData.username;
-            req.session.loggedIn = true;
+            req.session.logged_in = true;
 
             // userData is returned as a JSON object
             res.status(200).json(userData); // 200 status code means OK
@@ -25,10 +25,13 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 // Login route
-router.post('/login', withAuth, async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         // The userData is found based on the username from the req.body object
         const userData = await User.findOne({ where: { username: req.body.username } });
+
+// console.log(req.body);
+// console.log(userData);
 
         // If the userData is null, a 400 status code is returned with a message
         if (!userData) {
@@ -54,7 +57,7 @@ router.post('/login', withAuth, async (req, res) => {
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.username = userData.username;
-            req.session.loggedIn = true;
+            req.session.logged_in= true;
 
             // userData is returned as a JSON object with a message
             res.json({ user: userData, message: 'Login successful! Welcome back!' });
@@ -69,7 +72,7 @@ router.post('/login', withAuth, async (req, res) => {
 // Logout route
 router.post('/logout', (req, res) => {
     // If the session is logged_in, the session is destroyed
-    if (req.session.loggedIn) {
+    if (req.session.logged_in) {
         req.session.destroy(() => { // The destroy method is called on the session object
             res.status(204).end(); // 204 status code means No Content
         });
