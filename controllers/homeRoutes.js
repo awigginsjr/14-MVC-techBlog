@@ -1,7 +1,7 @@
 // Purpose: to handle the routes for the home page
 // const express = require('express');
 const router = require('express').Router();
-const { Post, User, Comments } = require('../models/');
+const { Post, User, Comments } = require(__dirname + '/../models/');
 const { withAuth, withoutAuth } = require('../utils/auth');
 
 // Get all posts
