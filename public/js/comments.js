@@ -2,7 +2,7 @@
 const commentsHandler = async (event) => {
     event.preventDefault();
 
-    const postId = document.querySelector('input[name="post-id"]').value; // Get the post ID from the form
+    const postId = document.querySelector('input[name="postId"]').value; // Get the post ID from the form
     const body = document.querySelector('textarea[name="comment-body"]').value; // Get the comment body from the form
     // const bodyInput = document.querySelector('textarea[name="post-body"]'); // Get the comment body input element
 

@@ -35,13 +35,14 @@ router.get('/post/:id', async (req, res) => {
           ],
         });
     
-        // if no post by that id, return 404 status code
+        
         if (postData) {
           const post = postData.get({ plain: true });
-
+          console.log("post", post)
+          
           res.render('post', { post, loggedIn: req.session.logged_in, });
         } else {
-          res.status(404).end();
+          res.status(404).end(); // if no post by that id, return 404 status code
         }
       } catch (err) {
         res.status(500).json(err); // 500 status code means Internal Server Error
