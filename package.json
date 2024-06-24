@@ -21,7 +21,8 @@
     "express-session": "^1.17.2",
     "mysql2": "^2.2.5",
     "seed": "^0.4.4",
-    "sequelize": "^6.6.5"
+    "sequelize": "^6.6.5",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "eslint": "^7.12.1",

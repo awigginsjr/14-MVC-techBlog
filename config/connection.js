@@ -8,7 +8,6 @@ let sequelize;
 // environment variable for JawsDB that holds the URL to the database
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
-  
   // environment variable for local database that holds the URL to the database
 } else {
   sequelize = new Sequelize(
