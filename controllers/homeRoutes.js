@@ -37,7 +37,7 @@ router.get('/post/:id', async (req, res) => {
         });
     
         
-        if (postData) {
+        if (postData) { // if post exists, serialize the data
           const post = postData.get({ plain: true });
           console.log("post", post)
           

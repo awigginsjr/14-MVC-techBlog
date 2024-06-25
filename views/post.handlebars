@@ -10,23 +10,13 @@
                     <p class="card-text">{{post.body}}</p>
                 </div>
             </div>
-        
+        {{!-- comments --}}
             {{#if post.comments}}
 
             <section class="card">
               <div class="card-header">
                 <h3>Comments 📄 </h3>
               </div>
-
-              {{!-- <div class="card-body">
-                    <div>
-                      {{#each post.comments as |comment|}}
-                        <p>{{user.username}} commented on {{formatDate createdAt}}:</p>
-                        <p>{{body}}</p>
-                      {{/each}}
-                    </div>
-              </div> --}}
-
               <div class="card-body">
                 <div class="comments-section">
                   {{#each post.comments as |comment|}}
@@ -47,10 +37,10 @@
         </div>
     </div>
 
-  
+  {{!-- new comments --}}
     <div class="row">
       <div class="col-md-8">
-        {{!-- <div class="card"> --}}
+        
           <form id="new-comment-form">
             <div class="card-header" class="card mb-3">
               <h3>Add New Comment 📝</h3>
@@ -62,7 +52,7 @@
             
             <button type="submit" class="btn btn-primary">Add Comment ➕</button>
           </form>
-        {{!-- </div> --}}
+        
       </div>
     </div>
 </div>
