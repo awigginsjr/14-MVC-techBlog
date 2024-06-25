@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const postId = postIdInput.value; // Get the post ID from the input element
 
-  const editFormHandler = async function (event) { // Function to handle the edit post form submission
+  const editPostHandler = async function (event) { // Function to handle the edit post form submission
     event.preventDefault();
 
     const titleInput = document.querySelector('input[name="post-title"]'); // Get the title input element
@@ -42,13 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
       method: 'DELETE',
     });
 
-    document.location.replace('/dashboard'); // Redirect to the dashboard after deleting the post
+    document.location.replace('/dashboard/'); // Redirect to the dashboard after deleting the post
   };
 
   const editPostForm = document.querySelector('#edit-post-form'); // Get the edit post form element
   const deleteBtn = document.querySelector('#delete-btn'); // Get the delete button element
   if (editPostForm) {
-    editPostForm.addEventListener('submit', editFormHandler);  // Add an event listener for the edit post form
+    editPostForm.addEventListener('submit', editPostHandler);  // Add an event listener for the edit post form
   } else {
     console.error('Edit post form not found.'); // Log an error if the edit post form is not found
   }

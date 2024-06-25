@@ -7,10 +7,14 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <a class="list-item flex-row justify-space-between" href="/dashboard/edit/{{id}}"> 
-                        Edit ✍️:
-                    </a>
-                        <span>{{title}}</span>
-                        <span>{{formatDate createdAt}}</span>
+                        Edit ✍️</a>
+                    <div class="header-info">
+                        <span class="title"><strong>{{title}}:</strong></span>
+                        <span class="date"><em>{{formatDate createdAt}}</em></span>
+                    </div>
+                    {{!-- </a>
+                        <span>{{title}}:</span>
+                        <span>{{formatDate createdAt}}</span> --}}
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{body}}</p>
